@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, "public")));
 io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("send-location", (data) => {
-    console.log(data);
     io.emit('receive-location', {id : socket.id, ...data})
   });
 
@@ -27,6 +26,4 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-server.listen(process.env.PORT, ()=> {
-  console.log("Running")
-});
+server.listen(process.env.PORT);
